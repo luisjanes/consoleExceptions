@@ -1,4 +1,4 @@
-﻿namespace consoleException
+﻿namespace consoleExceptions
 {
     public class Program
     {
@@ -9,11 +9,12 @@
             {
                 for (int i = 0; i < 4; i++)
                 {
-                    //System.IndexOutOfRangeException
+                    //system.indexoutofrangeexception
                     Console.WriteLine(arr[i]);
                 }
-            } 
-            catch (IndexOutOfRangeException e)
+                Cadastrar("");
+            }
+            catch (ArgumentNullException e)
             {
                 Console.WriteLine(e.Source);
                 Console.WriteLine(e.Message);
@@ -25,6 +26,14 @@
                 Console.WriteLine("Type: " + e.GetType());
                 Console.WriteLine("Message: " + e.Message);
                 Console.WriteLine("StackTrace: " + e.StackTrace);
+            }
+
+            static void Cadastrar(string texto)
+            {
+                if (string.IsNullOrEmpty(texto))
+                {
+                    throw new ArgumentNullException("Não pode ser nulo ou vazio");
+                }
             }
         }
     }
