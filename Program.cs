@@ -1,4 +1,6 @@
-﻿namespace consoleExceptions
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace consoleExceptions
 {
     public class Program
     {
@@ -10,7 +12,7 @@
                 for (int i = 0; i < 4; i++)
                 {
                     //system.indexoutofrangeexception
-                    Console.WriteLine(arr[i]);
+                    //Console.WriteLine(arr[i]);
                 }
                 Cadastrar("");
             }
@@ -19,6 +21,13 @@
                 Console.WriteLine(e.Source);
                 Console.WriteLine(e.Message);
                 Console.WriteLine("Índice não encontrado");
+            }
+            catch(MyException e)
+            {
+                Console.WriteLine(e.Source);
+                Console.WriteLine(e.Message);
+                Console.WriteLine(e.WhenHappn);
+                Console.WriteLine("MyException");
             }
             catch (Exception e)
             {
@@ -32,9 +41,18 @@
             {
                 if (string.IsNullOrEmpty(texto))
                 {
-                    throw new ArgumentNullException("Não pode ser nulo ou vazio");
+                    //throw new ArgumentNullException("Não pode ser nulo ou vazio");
+                    throw new MyException(DateTime.Now);
                 }
             }
         }
+    }
+    public class MyException : Exception
+    {
+        public MyException(DateTime date) 
+        { 
+            WhenHappn = date;
+        }
+        public DateTime WhenHappn { get; set; }
     }
 }
