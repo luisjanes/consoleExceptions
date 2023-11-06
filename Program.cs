@@ -36,6 +36,11 @@ namespace consoleExceptions
                 Console.WriteLine("Message: " + e.Message);
                 Console.WriteLine("StackTrace: " + e.StackTrace);
             }
+            //Sempre passará pelo finally
+            finally 
+            { 
+                Console.WriteLine("Fechar aplicação"); 
+            }
 
             static void Cadastrar(string texto)
             {
